@@ -14,7 +14,7 @@ class TestUser(unittest.TestCase):
 
         """
 
-        self.new_user = User("shem", "kariuki", "1234")  # create user object
+        self.new_user = User("shem", "kariuki", "shem@gmail.com", "1234")  # create user object
 
     def test_init(self):
         """
@@ -24,6 +24,7 @@ class TestUser(unittest.TestCase):
 
         self.assertEqual(self.new_user.first_name, "shem")
         self.assertEqual(self.new_user.last_name, "kariuki")
+        self.assertEqual(self.new_user.email, "shem@gmail.com")
         self.assertEqual(self.new_user.login_password, "1234")
 
     def test_save_user(self):
@@ -36,18 +37,17 @@ class TestUser(unittest.TestCase):
         self.assertEqual(len(User.user_list), 1)
 
     def tearDown(self):
-    	"""
-    	tearDown method that does clean up after each test case has run
-    	"""
-    	User.user_list=[]
-
+        """
+        tearDown method that does clean up after each test case has run
+        """
+        User.user_list = []
 
     def test_save_multiple_users(self):
         """"
         test_save_multiple_users to check if we can save multiple user objects to our user_list
         """
         self.new_user.save_user()
-        test_user = User("test", "user", "5678")
+        test_user = User("test", "user", "test@gmail.com", "5678")
         test_user.save_user()
         self.assertEqual(len(User.user_list), 2)
 
