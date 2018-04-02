@@ -1,9 +1,17 @@
 import unittest
-from contact import Contact
 
-class TestContact(unittest.TestCase):
-	""Test class that defines test cases for the contact class behaviours."""
-	def __init__(self, arg):
-		super(TestContact, self).__init__()
-		self.arg = arg
-		
+from user import User
+
+
+class TestUser(unittest.TestCase):
+    """
+    Test class that defines test cases for the user class behaviours
+    """
+
+    def setUp(self):
+        """
+        set up method to run before each test cases.
+
+        """
+
+        self.new
