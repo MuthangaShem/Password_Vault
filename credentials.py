@@ -43,4 +43,17 @@ class Credentials:
             if credentials.website == website:
                 return credentials
 
-    
+    @classmethod
+    def credentials_exist(cls, website):
+        '''
+        Method that checks if a credential exists from the credential list.
+        Args:
+            website: website to search if it exists
+        Returns :
+            Boolean: True or false depending if the contact exists
+        '''
+        for credentials in cls.credentials_list:
+            if credentials.website == website:
+                return True
+
+        return False

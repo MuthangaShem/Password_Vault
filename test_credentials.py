@@ -81,8 +81,8 @@ class TestCredentials(unittest.TestCase):
         test_credentials = Credentials(
             "facebook", "karis mesh", "paswad")  # new credentials
         test_credentials.save_credentials()
-        credentials_exists = Credentials.credentials_exists("website")
-        self.assertEqual(credentials_exists)
+        credentials_exists = Credentials.credentials_exist("facebook")
+        self.assertTrue(credentials_exists)
 
 
 if __name__ == '__main__':
