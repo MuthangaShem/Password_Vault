@@ -29,4 +29,18 @@ class Credentials:
         '''
         Credentials.credentials_list.remove(self)
 
-    	
+    @classmethod
+    def find_by_website(cls, website):
+        '''
+        Method that takes in a website and returns a credentials that matches that website.
+
+        Args:
+            website: website to search for
+        Returns :
+            credentials that matches the website.
+        '''
+        for credentials in cls.credentials_list:
+            if credentials.website == website:
+                return credentials
+
+    
