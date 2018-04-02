@@ -14,6 +14,17 @@ class TestCredentials(unittest.TestCase):
         '''
         set up method to run before each test case
         '''
-        self.new_credentials = Credentials("gmail", "kariukishem", "098765") # create credentials object
-        
+        self.new_credentials = Credentials(
+            "gmail", "kariukishem", "098765")  # create credentials object
 
+    def test_init(self):
+        '''
+        test_init test case to test if the object is initialized properly
+        '''
+        self.assertEqual(self.new_credentials.website, "gmail")
+        self.assertEqual(self.new_credentials.username, "kariukishem")
+        self.assertEqual(self.new_credentials.password, "098765")
+
+
+if __name__ == '__main__':
+    unittest.main()
