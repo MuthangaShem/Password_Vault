@@ -25,3 +25,8 @@ def delete_credentials(credentials):
     return credentials.delete_credentials()
 
 
+def find_credentials(website):
+    '''
+    function that finds credentials by website and returns the credentials
+    '''
+    return Credentials.find_by_website(website)
