@@ -17,3 +17,11 @@ def save_credentials(credentials):
     '''
     credentials.save_credentials()
 
+
+def delete_credentials(credentials):
+    '''
+        function to delete credentials
+        '''
+    return credentials.delete_credentials()
+
+
