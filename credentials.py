@@ -17,4 +17,3 @@ class Credentials:
         self.username = username
         self.password = password
 
-    
