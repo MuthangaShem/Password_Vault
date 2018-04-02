@@ -59,8 +59,20 @@ class TestCredentials(unittest.TestCase):
         test_credentials = Credentials(
             "facebook", "karis mesh", "paswad")  # new credentials
         test_credentials.save_credentials()
-        self.new_credentials.delete_credentials() # deleting a credentials object
+        self.new_credentials.delete_credentials()  # deleting a credentials object
         self.assertEqual(len(Credentials.credentials_list), 1)
+
+    def test_find_credentials_by_website(self):
+        '''
+        test to check if we can find a credential by website and display information
+        '''
+        self.new_credentials.save_credentials()
+        test_credentials = Credentials(
+            "facebook", "karis mesh", "paswad")  # new credentials
+        test_credentials.save_credentials()
+        found_credentials = Credentials.find_by_website("facebook")
+        self.assertEqual(found_credentials.website, test_credentials.website)
+
 
 if __name__ == '__main__':
     unittest.main()
