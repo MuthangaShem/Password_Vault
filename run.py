@@ -30,3 +30,10 @@ def find_credentials(website):
     function that finds credentials by website and returns the credentials
     '''
     return Credentials.find_by_website(website)
+
+
+def find_existing_credentials(website):
+    '''
+Function that check if a credential exists with that website and return a Boolean
+'''
+    return Credentials.credentials_exist(website)
