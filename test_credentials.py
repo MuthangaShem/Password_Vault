@@ -73,6 +73,17 @@ class TestCredentials(unittest.TestCase):
         found_credentials = Credentials.find_by_website("facebook")
         self.assertEqual(found_credentials.website, test_credentials.website)
 
+    def test_credentials_exists(self):
+        '''
+        test to check if we can return a Boolean  if we cannot find the credentials.
+        '''
+        self.new_credentials.save_credentials()
+        test_credentials = Credentials(
+            "facebook", "karis mesh", "paswad")  # new credentials
+        test_credentials.save_credentials()
+        credentials_exists = Credentials.credentials_exists("website")
+        self.assertEqual(credentials_exists)
+
 
 if __name__ == '__main__':
     unittest.main()
