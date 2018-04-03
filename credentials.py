@@ -1,4 +1,6 @@
 import pyperclip
+import random
+import string
 
 
 class Credentials:
@@ -72,7 +74,12 @@ class Credentials:
     # def copy_password(cls, website):
     #     credentials_found = Credentials.find_by_website(website)
     #     pyperclip.copy(credentials_found.password)
-    # @classmethod
-    # def generate_passwords():
-    #     password = random.randint(1, 1000000000)
-    #     print(password)
+
+    @classmethod
+    def generate_password(cls, pass_length):
+        '''
+        Method to generate passowrds
+        '''
+        allchar = string.ascii_letters + string.punctuation + string.digits
+        password = ''.join(random.sample(allchar, int(pass_length)))
+        return password

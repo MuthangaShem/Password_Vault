@@ -47,7 +47,7 @@ def find_credentials(website):
     return Credentials.find_by_website(website)
 
 
-def find_existing_credentials(website):
+def check_existing_credentials(website):
     '''
         Function that check if a credential exists with that website and return a Boolean
         '''
@@ -59,6 +59,13 @@ def display_credentials():
         Function that returns all the saved credentials
         '''
     return Credentials.display_credentials()
+
+
+def generate_password(pass_length):
+    '''
+    function for generating password
+    '''
+    return Credentials.generate_password(pass_length)
 
 
 def main():
@@ -75,29 +82,37 @@ def main():
         print('Please enter your first name...')
         print()
         first_name = str(input())
+        print('\n')
 
         print('Please enter your last name...')
         print()
         last_name = str(input())
+        print('\n')
 
         print(f"Welcome {first_name} {last_name}." + "\n"
               + "Please choose a suitable login password...")
-        print()
+        print('\n')
 
         login_password = input()
-        print()
+        print('\n')
 
         print("please confirm the password by entering it again.")
         login_password_repeat = input()
+        print('\n')
 
         if login_password == login_password_repeat:
             print()
             print("Registration successful!!")
+            print('\n')
 
             execute = True
             while execute:
-                short_code = input(
-                    "Use these short codes : cc - create a new credential, dc - display credential, fc -find a credential, ex -exit The Passwords Vault ").lower()
+                print("-" * 10 + "Use these short codes :" + "-" * 10)
+                print()
+                print(
+                    "cc - create a new credential, dc - display credential, fc -find a credential, ex -exit The Passwords Vault")
+                print('----' * 20)
+                short_code = input().lower()
 
                 if short_code == 'cc':
                     print("New Credentials")
@@ -109,11 +124,12 @@ def main():
                     print(f'Username you use for {website} ...')
                     username = input()
 
-                    print("Please enter a password...")
-                    password = input()
-                    print()
+                    print("How long would you like your password to be?")
+                    pass_length = int(input())
+                    password = generate_password(pass_length)
                     print('----' * 10)
-                    print(f"Your password is {password}")
+                    print("Your password is...")
+                    print("---" * 10 + f"{password}" + "---" * 10)
                     print("Please do not share it with anyone")
                     print('----' * 10)
                     print()
@@ -122,12 +138,55 @@ def main():
                         website, username, password))
                     print('\n')
                     print('----' * 10)
-                    print("New Credentials created:" +
-                          "\n" f"website: {website}" + "\n" + f"username: {username}" + "\n" + f"password: {password} ")
+                    print("New Credentials created:" + "\n" +
+                          f"website:  {website}" + "\n" +
+                          f"username: {username}" + "\n" +
+                          f"password: {password} ")
                     print('----' * 10)
                     print('\n')
 
                     execute = True
+
+                elif short_code == 'dc':
+                    if display_credentials():
+                        print("Here's a lit of you credentials")
+                        print('\n')
+                        for credentials in display_credentials():
+                            print('----' * 10)
+                            print(f"Website:  {credentials.website}" + "\n" +
+                                  f"Username: {credentials.username}" + "\n" +
+                                  f"Password: {credentials.password}")
+                            print('----' * 10)
+                            print()
+                            print()
+
+                    else:
+                        print()
+                        print()
+                        print(
+                            "You don't seem to be having anything saved at the moment...")
+                        print()
+                        print()
+
+                elif short_code == 'fc':
+                    print("Please The website that you want to search for")
+                    print()
+
+                    search_website = input()
+                    if check_existing_credentials(search_website):
+                        search_credentials = find_credentials(search_website)
+                        print('----' * 10)
+                        print(f"Website: {search_credentials.website}" + '\n' +
+                              f"Username: {search_credentials.username}" + '\n' +
+                              f"Password: {search_credentials.password}")
+                        print('----' * 10)
+
+                    else:
+                        print("Credentials for that website do not exist.")
+
+                elif short_code == 'ex':
+                    print("You are now login out. Good Bye...")
+                    break
 
         if login_password != login_password_repeat:
             print()
