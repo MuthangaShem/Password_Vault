@@ -62,8 +62,82 @@ def display_credentials():
 
 
 def main():
-    print("Hello and welcome to your Passwords Vault. An app that help you generate and/or store passwords for your numerous accounts")
-    print('\n')
+
+    login = True
+
+    while login:
+
+        print('---' * 20)
+        print("Hello and welcome to your Passwords Vault.")
+        print('---' * 20)
+        print('\n')
+
+        print('Please enter your first name...')
+        print()
+        first_name = str(input())
+
+        print('Please enter your last name...')
+        print()
+        last_name = str(input())
+
+        print(f"Welcome {first_name} {last_name}." + "\n"
+              + "Please choose a suitable login password...")
+        print()
+
+        login_password = input()
+        print()
+
+        print("please confirm the password by entering it again.")
+        login_password_repeat = input()
+
+        if login_password == login_password_repeat:
+            print()
+            print("Registration successful!!")
+
+            execute = True
+            while execute:
+                short_code = input(
+                    "Use these short codes : cc - create a new credential, dc - display credential, fc -find a credential, ex -exit The Passwords Vault ").lower()
+
+                if short_code == 'cc':
+                    print("New Credentials")
+                    print('----' * 10)
+
+                    print('Website...')
+                    website = input()
+
+                    print(f'Username you use for {website} ...')
+                    username = input()
+
+                    print("Please enter a password...")
+                    password = input()
+                    print()
+                    print('----' * 10)
+                    print(f"Your password is {password}")
+                    print("Please do not share it with anyone")
+                    print('----' * 10)
+                    print()
+
+                    save_credentials(create_credentials(
+                        website, username, password))
+                    print('\n')
+                    print('----' * 10)
+                    print("New Credentials created:" +
+                          "\n" f"website: {website}" + "\n" + f"username: {username}" + "\n" + f"password: {password} ")
+                    print('----' * 10)
+                    print('\n')
+
+                    execute = True
+
+        if login_password != login_password_repeat:
+            print()
+            retry = input("Sorry... The passwords didn't match!!" + "\n" +
+                          " Would you like to try again? (Y)es or (N)o?")
+            if retry == "y".lower():
+                login = True
+            if retry == "n".lower():
+                print("Thank you for your time. Good Bye")
+                exit()
 
 
 if __name__ == '__main__':
